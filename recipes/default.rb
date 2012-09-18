@@ -25,7 +25,9 @@ directory "/home/rstudio" do
   action :create
 end
 
-remote_file "/tmp/#{node.rstudio[:package]}" do
+rstudio_package = "#{Chef::Config[:file_cache_path]}/#{node.rstudio[:package]}"
+
+remote_file rstudio_package do
   source node.rstudio[:download_url]
   mode 0644
   checksum node.rstudio[:checksum]
@@ -34,12 +36,12 @@ end
 case node['platform']
 when 'ubuntu', 'debian'
   dpkg_package 'rstudio-server' do
-    source "/tmp/#{node.rstudio[:package]}"
+    source rstudio_package
     action :install
   end
 when 'centos', 'redhat'
   yum_package 'rstudio-server' do
-    source "/tmp/#{node.rstudio[:package]}"
+    source rstudio_package
     action :install
   end
 end
