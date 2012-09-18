@@ -19,6 +19,8 @@ else
   when 'ubuntu', 'debian'
     default.rstudio[:download_url]  = "http://download2.rstudio.org/rstudio-server-#{default.rstudio[:version]}-i386.deb"
     default.rstudio[:checksum]      = "f614dd0d2fe01279b5fed5a3122c8f83"
+  else
+    Chef::Log.info("This cookbook is not yet supported on #{node['platform']}")
   end
 end
 
