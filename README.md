@@ -1,6 +1,8 @@
 
 # Description
 
+[![Build Status](https://secure.travis-ci.org/marsam/cookbook-rstudio.png?branch=master)](https://travis-ci.org/marsam/cookbook-rstudio)
+
 This cookbook installs and configures [rstudio-server](https://github.com/rstudio/rstudio).
 
 # Usage
