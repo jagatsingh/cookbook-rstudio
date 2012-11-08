@@ -11,9 +11,11 @@ This cookbook installs and configures [rstudio-server](https://github.com/rstudi
 $ git clone git://github.com/marsam/cookbook-rstudio.git rstudio
 $ cd rstudio
 $ bundle install
-$ berks install --shims tmp/cookbooks
-$ vagrant up
+$ bundle exec vagrant up
 ```
+
+Open http://127.0.0.1:8787/ to start playing with rstudio server.
+
 
 ## TODO
 * Add tests
