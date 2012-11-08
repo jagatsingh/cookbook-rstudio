@@ -1,12 +1,32 @@
 
 include_recipe 'R'
 
-rstudio_package = "#{Chef::Config[:file_cache_path]}/#{node.rstudio[:package]}"
+if node.rstudio[:machine] =~ /x86_64/
+  package = value_for_platform(
+    %w|centos redhat amazon scientific| => {
+      'default' => "rstudio-server-#{node.rstudio[:version]}-x86_64.rpm"
+    },
+    %w|ubuntu debian| => {
+      'default' => "rstudio-server-#{node.rstudio[:version]}-amd64.deb"
+    }
+  )
+else
+  package = value_for_platform(
+    %w|centos redhat amazon scientific| => {
+        'default' => "rstudio-server-#{node.rstudio[:version]}-i686.rpm"
+    },
+    %w|ubuntu debian| => {
+        'default' => "rstudio-server-#{node.rstudio[:version]}-i386.deb"
+    }
+  )
+end
+
+download_url = "http://download2.rstudio.org/#{package}"
+rstudio_package = "#{Chef::Config[:file_cache_path]}/#{package}"
 
 remote_file rstudio_package do
-  source node.rstudio[:download_url]
+  source download_url
   mode 0644
-  checksum node.rstudio[:checksum]
 end
 
 case node[:platform]
