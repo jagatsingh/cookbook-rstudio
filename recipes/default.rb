@@ -1,22 +1,22 @@
 
 include_recipe 'R'
 
-if node.rstudio[:machine] =~ /x86_64/
+if node['rstudio']['machine'] =~ /x86_64/
   package = value_for_platform(
     %w|centos redhat amazon scientific| => {
-      'default' => "rstudio-server-#{node.rstudio[:version]}-x86_64.rpm"
+      'default' => "rstudio-server-#{node['rstudio']['version']}-x86_64.rpm"
     },
     %w|ubuntu debian| => {
-      'default' => "rstudio-server-#{node.rstudio[:version]}-amd64.deb"
+      'default' => "rstudio-server-#{node['rstudio']['version']}-amd64.deb"
     }
   )
 else
   package = value_for_platform(
     %w|centos redhat amazon scientific| => {
-        'default' => "rstudio-server-#{node.rstudio[:version]}-i686.rpm"
+      'default' => "rstudio-server-#{node['rstudio']['version']}-i686.rpm"
     },
     %w|ubuntu debian| => {
-        'default' => "rstudio-server-#{node.rstudio[:version]}-i386.deb"
+      'default' => "rstudio-server-#{node['rstudio']['version']}-i386.deb"
     }
   )
 end
@@ -29,7 +29,7 @@ remote_file rstudio_package do
   mode 0644
 end
 
-case node[:platform]
+case node['platform']
 when 'ubuntu', 'debian'
   %w| libssl0.9.8 libapparmor1 apparmor-utils |.each do |pkg|
     package pkg do

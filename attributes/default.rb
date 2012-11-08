@@ -1,3 +1,1 @@
-
-default.rstudio[:version] = "0.97.168"
-
+default['rstudio']['version'] = "0.97.168"
