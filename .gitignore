@@ -1,9 +1,10 @@
-*.swp
 .vagrant
-Gemfile.lock
-
-# Berkshelf
 Berksfile.lock
-
-tmp/cookbooks/*
-!.gitignore
+Gemfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+/cookbooks
