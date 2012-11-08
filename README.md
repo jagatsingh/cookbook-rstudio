@@ -14,8 +14,5 @@ $ bundle install
 $ bundle exec vagrant up
 ```
 
-Open http://127.0.0.1:8787/ to start playing with rstudio server.
+Open http://127.0.0.1:8787 to play with rstudio server.
 
-
-## TODO
-* Add tests
