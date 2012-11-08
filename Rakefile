@@ -5,12 +5,12 @@ task :foodcritic do
   sh "foodcritic ."
 end
 
-"Runs tailor"
+desc "Runs tailor"
 task :tailor do
   system("tailor -c .config")
 end
 
-"Provision vagrant"
+desc "Provision vagrant"
 task :provision do
   system("bundle exec vagrant provision")
 end
