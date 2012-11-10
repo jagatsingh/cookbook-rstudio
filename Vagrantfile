@@ -11,7 +11,8 @@ Vagrant::Config.run do |config|
   # config.vm.network :hostonly, "192.168.33.10"
   # config.vm.network :bridged
 
-  config.vm.forward_port 8787, 8787
+  config.vm.forward_port 8787, 8787   # default rstudio server port
+  config.vm.forward_port 8100, 8100   # default shiny package port
 
   config.vm.provision :chef_solo do |chef|
     chef.run_list  = %w|rstudio|
